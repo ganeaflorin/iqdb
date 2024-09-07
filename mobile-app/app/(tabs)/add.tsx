@@ -1,18 +1,22 @@
-import { StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 
-import { ThemedText } from '@/components/ThemedText';
+import QuestionForm from '@/components/QuestionForm/QuestionForm';
 import { ThemedView } from '@/components/ThemedView';
 
 export default function TabTwoScreen() {
   return (
-    <ThemedView style={styles.container}>
-      <ThemedText type='title'>Add</ThemedText>
-    </ThemedView>
+    <ScrollView>
+      <ThemedView style={styles.container}>
+        <QuestionForm />
+      </ThemedView>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     height: '100%',
+    padding: 50,
+    alignItems: 'center',
   },
 });
