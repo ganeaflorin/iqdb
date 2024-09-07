@@ -1,4 +1,4 @@
-import { Colors, themeColor } from '@/constants/Colors';
+import { Colors } from '@/constants/Colors';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -20,8 +20,8 @@ export const styles = StyleSheet.create({
   },
   label: {
     marginTop: 20,
+    marginBottom: 5,
   },
-
   button: {
     marginTop: 40,
   },

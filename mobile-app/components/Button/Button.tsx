@@ -6,7 +6,7 @@ import { styles } from './Button.styles';
 interface Props {
   text: string;
   onPress: () => void;
-  style: Record<string, unknown>;
+  style?: Record<string, unknown>;
 }
 
 const Button = ({ text, onPress, style }: Props) => {

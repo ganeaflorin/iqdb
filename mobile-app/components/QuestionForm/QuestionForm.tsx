@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { SafeAreaView, ScrollView, TextInput } from 'react-native';
+import { Image, TextInput } from 'react-native';
+import Button from '../Button/Button';
+import Dropdown from '../Dropdown/Dropdown';
 import { ThemedText } from '../ThemedText';
 import { ThemedView } from '../ThemedView';
 import { styles } from './QuestionForm.styles';
-import DropDownPicker from 'react-native-dropdown-picker';
-import { themeColor } from '@/constants/Colors';
-import Button from '../Button/Button';
-import Dropdown from '../Dropdown/Dropdown';
+import ImagePicker from '../ImagePicker/ImagePicker';
 
 interface Props {
   propSource?: string;
@@ -28,13 +27,13 @@ const QuestionForm = ({
   const [question, setQuestion] = useState(propQuestion);
   const [answer, setAnswer] = useState(propAnswer);
   const [comment, setComment] = useState(propComment);
+  const [image, setImage] = useState<string | null>('');
+  const [answerImage, setAnswerImage] = useState<string | null>('');
 
   return (
     <ThemedView style={styles.container}>
       <ThemedText>Sursa</ThemedText>
-      <SafeAreaView style={{ flex: 1 }}>
-        <Dropdown value={source} setValue={setSource} />
-      </SafeAreaView>
+      <Dropdown value={source} setValue={setSource} />
       <ThemedText style={styles.label}>Runda</ThemedText>
       <TextInput style={styles.input} value={round} onChangeText={setRound} />
       <ThemedText style={styles.label}>
@@ -48,11 +47,15 @@ const QuestionForm = ({
         multiline
         numberOfLines={10}
       />
+      <ThemedText style={styles.label}>Imagine pentru întrebare</ThemedText>
+      <ImagePicker image={image} setImage={setImage} />
       <ThemedText style={styles.label}>
         Răspuns
         <ThemedText style={styles.mandatoryLabel}>*</ThemedText>
       </ThemedText>
       <TextInput style={styles.input} value={answer} onChangeText={setAnswer} />
+      <ThemedText style={styles.label}>Imagine pentru răspuns</ThemedText>
+      <ImagePicker image={answerImage} setImage={setAnswerImage} />
       <ThemedText style={styles.label}>Comentariu</ThemedText>
       <TextInput
         style={styles.input}

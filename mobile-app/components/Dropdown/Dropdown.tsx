@@ -12,7 +12,7 @@ const Dropdown = ({ value, setValue }: Props) => {
     { label: 'Flo', value: 'FLO' },
     { label: 'Pub Quiz Iasi', value: 'PUB_QUIZ_IASI' },
     { label: 'Planet Quiz', value: 'PLANET_QUIZ' },
-    { label: 'Clubul Moldovenesc de Jocuri Intelectuale', value: 'CMJI' },
+    { label: 'CMJI', value: 'CMJI' },
   ]);
   const [open, setOpen] = useState(false);
 

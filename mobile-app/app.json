@@ -27,7 +27,13 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Aplicația are nevoie de acces la galerie pentru a putea încărca o imagine."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
