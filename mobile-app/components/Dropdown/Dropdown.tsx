@@ -9,8 +9,10 @@ interface Props {
 
 const Dropdown = ({ value, setValue }: Props) => {
   const [items, setItems] = useState([
-    { label: 'Apple', value: 'apple' },
-    { label: 'Banana', value: 'banana' },
+    { label: 'Flo', value: 'FLO' },
+    { label: 'Pub Quiz Iasi', value: 'PUB_QUIZ_IASI' },
+    { label: 'Planet Quiz', value: 'PLANET_QUIZ' },
+    { label: 'Clubul Moldovenesc de Jocuri Intelectuale', value: 'CMJI' },
   ]);
   const [open, setOpen] = useState(false);
 
