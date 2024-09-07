@@ -16,7 +16,7 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name='view'
+        name='index'
         options={{
           title: 'Vizualizează',
           tabBarIcon: ({ color, focused }) => (
