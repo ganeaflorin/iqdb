@@ -1,42 +1,47 @@
-import { StyleSheet } from 'react-native';
-
+import Button from '@/components/Button/Button';
+import Dropdown from '@/components/Dropdown/Dropdown';
+import PreviewQuestionList from '@/components/PreviewQuestionList/PreviewQuestionList';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { useState } from 'react';
-import Dropdown from '@/components/Dropdown/Dropdown';
-import Button from '@/components/Button/Button';
-import PreviewQuestion from '@/components/PreviewQuestion/PreviewQuestion';
+import { ScrollView, StyleSheet } from 'react-native';
 
 export default function HomeScreen() {
   const [source, setSource] = useState('');
   const [difficulty, setDifficulty] = useState('');
 
   return (
-    <ThemedView style={styles.container}>
-      <ThemedView style={styles.filtersAlignment}>
-        <ThemedView>
-          <ThemedText>Sursa</ThemedText>
-          <Dropdown
-            value={source}
-            setValue={setSource}
-            style={styles.dropdown}
-          />
+    <ScrollView>
+      <ThemedView style={styles.container}>
+        <ThemedView style={styles.filtersAlignment}>
+          <ThemedView>
+            <ThemedText>Sursa</ThemedText>
+            <Dropdown
+              value={source}
+              setValue={setSource}
+              style={styles.dropdown}
+            />
+          </ThemedView>
+          <ThemedView>
+            <ThemedText>Dificultate</ThemedText>
+            <Dropdown
+              value={difficulty}
+              setValue={setDifficulty}
+              style={styles.dropdown}
+            />
+          </ThemedView>
         </ThemedView>
-        <ThemedView>
-          <ThemedText>Dificultate</ThemedText>
-          <Dropdown
-            value={difficulty}
-            setValue={setDifficulty}
-            style={styles.dropdown}
-          />
+        <ThemedView style={[styles.filtersAlignment, styles.buttonsContainer]}>
+          <Button text='Aleatoriu' onPress={() => {}} style={styles.button} />
+          <Button text='Caută' onPress={() => {}} style={styles.button} />
         </ThemedView>
+        <PreviewQuestionList
+          source={source}
+          difficulty={difficulty}
+          isRandom={false}
+        />
       </ThemedView>
-      <ThemedView style={[styles.filtersAlignment, styles.buttonsContainer]}>
-        <Button text='Aleatoriu' onPress={() => {}} style={styles.button} />
-        <Button text='Caută' onPress={() => {}} style={styles.button} />
-      </ThemedView>
-      <PreviewQuestion />
-    </ThemedView>
+    </ScrollView>
   );
 }
 
