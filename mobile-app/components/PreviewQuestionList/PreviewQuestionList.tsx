@@ -30,7 +30,7 @@ const PreviewQuestionList = ({ source, difficulty, isRandom }: Props) => {
   return (
     <ThemedView style={styles.container}>
       {questions.map((question) => (
-        <PreviewQuestion {...question} />
+        <PreviewQuestion key={question.id} {...question} />
       ))}
     </ThemedView>
   );

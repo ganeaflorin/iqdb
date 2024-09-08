@@ -1,13 +1,24 @@
-import React from 'react';
-import { ThemedText } from '../ThemedText';
 import { Question } from '@/types/question';
+import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter';
+import { router } from 'expo-router';
+import React from 'react';
+import { Pressable } from 'react-native';
+import { ThemedText } from '../ThemedText';
 import { ThemedView } from '../ThemedView';
 import { styles } from './PreviewQuestion.style';
-import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter';
 
 const PreviewQuestion = ({ text, id, round }: Question) => {
   return (
-    <ThemedView>
+    <Pressable
+      onPress={() => {
+        router.push(`/question/${id}`);
+      }}
+      style={({ pressed }) => [
+        {
+          opacity: pressed ? 0.8 : 1,
+        },
+      ]}
+    >
       <ThemedView style={styles.metaInfo}>
         <ThemedText>Întrebarea {id + 1}</ThemedText>
         {round && (
@@ -19,7 +30,7 @@ const PreviewQuestion = ({ text, id, round }: Question) => {
           {text}
         </ThemedText>
       </ThemedView>
-    </ThemedView>
+    </Pressable>
   );
 };
 
