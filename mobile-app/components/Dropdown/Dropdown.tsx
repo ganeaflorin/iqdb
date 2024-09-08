@@ -5,9 +5,10 @@ import { styles } from './Dropdown.styles';
 interface Props {
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
+  style?: Record<string, unknown>;
 }
 
-const Dropdown = ({ value, setValue }: Props) => {
+const Dropdown = ({ value, setValue, style }: Props) => {
   const [items, setItems] = useState([
     { label: 'Flo', value: 'FLO' },
     { label: 'Pub Quiz Iasi', value: 'PUB_QUIZ_IASI' },
@@ -24,7 +25,7 @@ const Dropdown = ({ value, setValue }: Props) => {
       setOpen={setOpen}
       setValue={setValue}
       setItems={setItems}
-      style={styles.dropdown}
+      style={[styles.dropdown, style]}
       textStyle={styles.text}
       dropDownContainerStyle={styles.container}
       listMode='SCROLLVIEW'

@@ -9,6 +9,7 @@ import ImagePicker from '../ImagePicker/ImagePicker';
 
 interface Props {
   propSource?: string;
+  propDifficulty?: string;
   propRound?: string;
   propQuestion?: string;
   propAnswer?: string;
@@ -21,8 +22,10 @@ const QuestionForm = ({
   propQuestion,
   propAnswer,
   propComment,
+  propDifficulty,
 }: Props) => {
   const [source, setSource] = useState(propSource ?? '');
+  const [difficulty, setDifficulty] = useState(propDifficulty ?? '');
   const [round, setRound] = useState(propRound);
   const [question, setQuestion] = useState(propQuestion);
   const [answer, setAnswer] = useState(propAnswer);
@@ -32,8 +35,24 @@ const QuestionForm = ({
 
   return (
     <ThemedView style={styles.container}>
-      <ThemedText>Sursa</ThemedText>
-      <Dropdown value={source} setValue={setSource} />
+      <ThemedView style={styles.dropdownsAlignment}>
+        <ThemedView>
+          <ThemedText>Sursa</ThemedText>
+          <Dropdown
+            value={source}
+            setValue={setSource}
+            style={styles.dropdown}
+          />
+        </ThemedView>
+        <ThemedView>
+          <ThemedText>Dificultate</ThemedText>
+          <Dropdown
+            value={difficulty}
+            setValue={setDifficulty}
+            style={styles.dropdown}
+          />
+        </ThemedView>
+      </ThemedView>
       <ThemedText style={styles.label}>Runda</ThemedText>
       <TextInput style={styles.input} value={round} onChangeText={setRound} />
       <ThemedText style={styles.label}>

@@ -10,4 +10,7 @@ export const styles = StyleSheet.create({
     paddingLeft: 25,
     paddingRight: 25,
   },
+  text: {
+    textAlign: 'center',
+  },
 });

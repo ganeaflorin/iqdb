@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { ThemedText } from '../ThemedText';
 import { styles } from './Button.styles';
 
@@ -11,9 +11,9 @@ interface Props {
 
 const Button = ({ text, onPress, style }: Props) => {
   return (
-    <Pressable style={[styles.button, style]} onPress={onPress}>
-      <ThemedText>{text}</ThemedText>
-    </Pressable>
+    <TouchableOpacity style={[styles.button, style]} onPress={onPress}>
+      <ThemedText style={styles.text}>{text}</ThemedText>
+    </TouchableOpacity>
   );
 };
 

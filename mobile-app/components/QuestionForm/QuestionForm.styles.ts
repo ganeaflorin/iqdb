@@ -24,8 +24,17 @@ export const styles = StyleSheet.create({
   },
   button: {
     marginTop: 40,
+    alignSelf: 'center',
   },
   mandatoryLabel: {
     color: Colors.light.secondaryColor,
+  },
+  dropdown: {
+    width: 140,
+  },
+  dropdownsAlignment: {
+    justifyContent: 'center',
+    flexDirection: 'row',
+    gap: 10,
   },
 });

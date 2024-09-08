@@ -25,7 +25,11 @@ const ImagePicker = ({ image, setImage }: Props) => {
 
   return (
     <>
-      <Button text='Deschide galeria' onPress={pickImage} />
+      <Button
+        text='Deschide galeria'
+        onPress={pickImage}
+        style={{ alignSelf: 'center' }}
+      />
       {image && <Image source={{ uri: image }} />}
     </>
   );
