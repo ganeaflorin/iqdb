@@ -30,7 +30,12 @@ const ImagePicker = ({ image, setImage }: Props) => {
         onPress={pickImage}
         style={{ alignSelf: 'center' }}
       />
-      {image && <Image source={{ uri: image }} />}
+      {image && (
+        <Image
+          style={{ height: 300, width: 300, marginTop: 25, aspectRatio: 1 }}
+          source={{ uri: image }}
+        />
+      )}
     </>
   );
 };
