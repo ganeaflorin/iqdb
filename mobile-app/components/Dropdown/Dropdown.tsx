@@ -1,35 +1,39 @@
 import React, { useState } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { styles } from './Dropdown.styles';
+import { Filter } from '@/types/filters';
+import { ThemedView } from '../ThemedView';
+import { View } from 'react-native';
 
 interface Props {
+  options: Filter[];
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
+  getMapping: (optionName: string) => string;
   style?: Record<string, unknown>;
 }
 
-const Dropdown = ({ value, setValue, style }: Props) => {
-  const [items, setItems] = useState([
-    { label: 'Flo', value: 'FLO' },
-    { label: 'Pub Quiz Iasi', value: 'PUB_QUIZ_IASI' },
-    { label: 'Planet Quiz', value: 'PLANET_QUIZ' },
-    { label: 'CMJI', value: 'CMJI' },
-  ]);
+const Dropdown = ({ options, value, setValue, style, getMapping }: Props) => {
+  const formattedOptions = options.map((option) => ({
+    label: getMapping(option.name),
+    value: option.name,
+  }));
   const [open, setOpen] = useState(false);
 
   return (
-    <DropDownPicker
-      open={open}
-      value={value}
-      items={items}
-      setOpen={setOpen}
-      setValue={setValue}
-      setItems={setItems}
-      style={[styles.dropdown, style]}
-      textStyle={styles.text}
-      dropDownContainerStyle={styles.container}
-      listMode='SCROLLVIEW'
-    />
+    <View>
+      <DropDownPicker
+        open={open}
+        value={value}
+        items={formattedOptions}
+        setOpen={setOpen}
+        setValue={setValue}
+        style={[styles.dropdown, style]}
+        textStyle={styles.text}
+        dropDownContainerStyle={styles.container}
+        listMode='SCROLLVIEW'
+      />
+    </View>
   );
 };
 

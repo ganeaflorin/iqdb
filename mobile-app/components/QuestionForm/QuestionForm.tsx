@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Image, TextInput } from 'react-native';
 import Button from '../Button/Button';
 import Dropdown from '../Dropdown/Dropdown';
@@ -6,6 +6,8 @@ import { ThemedText } from '../ThemedText';
 import { ThemedView } from '../ThemedView';
 import { styles } from './QuestionForm.styles';
 import ImagePicker from '../ImagePicker/ImagePicker';
+import { difficultiesMappings, Filter, sourcesMappings } from '@/types/filters';
+import { endpoints, httpGet } from '@/http/http';
 
 interface Props {
   propSource?: string;
@@ -33,6 +35,18 @@ const QuestionForm = ({
   const [image, setImage] = useState<string | null>('');
   const [answerImage, setAnswerImage] = useState<string | null>('');
 
+  const [sources, setSources] = useState<Filter[]>([]);
+  const [difficulties, setDifficulties] = useState<Filter[]>([]);
+
+  const setFilters = async () => {
+    setSources(await httpGet(endpoints.sources));
+    setDifficulties(await httpGet(endpoints.difficulties));
+  };
+
+  useEffect(() => {
+    setFilters();
+  }, []);
+
   return (
     <ThemedView style={styles.container}>
       <ThemedView style={styles.dropdownsAlignment}>
@@ -42,14 +56,18 @@ const QuestionForm = ({
             value={source}
             setValue={setSource}
             style={styles.dropdown}
+            getMapping={(optionName) => sourcesMappings[optionName]}
+            options={sources}
           />
         </ThemedView>
         <ThemedView>
           <ThemedText>Dificultate</ThemedText>
           <Dropdown
+            options={difficulties}
             value={difficulty}
             setValue={setDifficulty}
             style={styles.dropdown}
+            getMapping={(optionName) => difficultiesMappings[optionName]}
           />
         </ThemedView>
       </ThemedView>

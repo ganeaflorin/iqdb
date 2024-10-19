@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ThemedView } from '../ThemedView';
 import PreviewQuestion from '../PreviewQuestion/PreviewQuestion';
 import { styles } from './PreviewQuestionList.styles';
+import { Question } from '@/types/question';
+import { endpoints, httpGet } from '@/http/http';
+import { ActivityIndicator } from 'react-native';
+import { Colors } from '@/constants/Colors';
+import { ThemedText } from '../ThemedText';
 
 interface Props {
   source: string;
@@ -10,25 +15,38 @@ interface Props {
 }
 
 const PreviewQuestionList = ({ source, difficulty, isRandom }: Props) => {
-  const questions = [
-    {
-      id: 0,
-      text: 'La sfarsitul anilor 1970, David Bowie a mers intr-o capitala din Europa centrala pentru a urma un tratament contra dependentei de droguri. Acolo lui Bowie i-a venit ideea piesei “Heroes”, in care 2 indragostiti sunt despartiti de EL. EL nu i-a impedicat pe cei care au dorit sa asculte melodia “Heroes” in 1987, pe care Bowie a interpretat-o in acelasi oras. Numiti-l ',
-      difficulty: 'EASY',
-      source: 'CMJI',
-      answer: 'Zidul Berlinului',
-      round: 'diverse',
-    },
-    {
-      id: 1,
-      text: 'Studiile au aratat ca in cazul victoriei echipei favorite, suporterii folosesc cel mai des ACEST cuvant din 3 litere, iar in caz de infrangere, ALT cuvant din 2 litere (in romana ambele). Care sunt cele 2 cuvinte?',
-      difficulty: 'EASY',
-      source: 'CMJI',
-      answer: 'Zidul Berlinului',
-    },
-  ];
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const getQuestions = async () => {
+    const query = new URLSearchParams({
+      source,
+      difficulty,
+    });
+    setQuestions(await httpGet(endpoints.questions, query.toString()));
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    setLoading(true);
+    getQuestions();
+  }, [source, difficulty]);
+
+  if (loading) {
+    return (
+      <ThemedView style={styles.container}>
+        <ActivityIndicator size='large' color={Colors.light.secondaryColor} />
+      </ThemedView>
+    );
+  }
+
   return (
     <ThemedView style={styles.container}>
+      {questions.length === 0 && (
+        <ThemedText style={styles.noQuestionsText}>
+          Nu există întrebări care să îndeplinească condițiile selectate.
+        </ThemedText>
+      )}
       {questions.map((question) => (
         <PreviewQuestion key={question.id} {...question} />
       ))}
