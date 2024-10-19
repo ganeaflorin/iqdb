@@ -13,6 +13,7 @@ class QuestionBase(BaseModel):
 class QuestionCreate(QuestionBase):
     pass
 
+
 class Question(QuestionBase):
     id: int
 
@@ -22,14 +23,17 @@ class SourceBase(BaseModel):
 class SourceCreate(SourceBase):
     pass
 
+
 class Source(SourceBase):
     id: int
+
 
 class DifficultyBase(BaseModel):
     name: str
 
 class DifficultyCreate(DifficultyBase):
     pass
+
 
 class Difficulty(DifficultyBase):
     id: int
