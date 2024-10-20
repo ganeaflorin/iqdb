@@ -16,3 +16,5 @@ export const sourcesMappings: Record<string, string> = {
   PLANET_QUIZ: 'Planet Quiz Iași',
   PUB_QUIZ_IASI: 'Pub Quiz Iași',
 };
+
+export const filterDefaultOption = { label: 'Toate', value: 'ALL' };

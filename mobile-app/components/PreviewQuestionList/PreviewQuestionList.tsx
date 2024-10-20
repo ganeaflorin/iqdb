@@ -7,6 +7,7 @@ import { endpoints, httpGet } from '@/http/http';
 import { ActivityIndicator } from 'react-native';
 import { Colors } from '@/constants/Colors';
 import { ThemedText } from '../ThemedText';
+import { filterDefaultOption } from '@/types/filters';
 
 interface Props {
   source: string;
@@ -14,15 +15,26 @@ interface Props {
   isRandom: boolean;
 }
 
+const removeDefaultValues = (obj: Record<string, string>) => {
+  const newObj: Record<string, string> = {};
+  Object.keys(obj).forEach((key: string) => {
+    if (obj[key] !== filterDefaultOption.value) {
+      newObj[key] = obj[key];
+    }
+  });
+  return newObj;
+};
+
 const PreviewQuestionList = ({ source, difficulty, isRandom }: Props) => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   const getQuestions = async () => {
-    const query = new URLSearchParams({
+    const searchParams = {
       source,
       difficulty,
-    });
+    };
+    const query = new URLSearchParams(removeDefaultValues(searchParams));
     setQuestions(await httpGet(endpoints.questions, query.toString()));
     setLoading(false);
   };

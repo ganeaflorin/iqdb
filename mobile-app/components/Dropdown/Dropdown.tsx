@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { styles } from './Dropdown.styles';
-import { Filter } from '@/types/filters';
+import { Filter, filterDefaultOption } from '@/types/filters';
 import { ThemedView } from '../ThemedView';
 import { View } from 'react-native';
 
@@ -11,20 +11,32 @@ interface Props {
   setValue: React.Dispatch<React.SetStateAction<string>>;
   getMapping: (optionName: string) => string;
   style?: Record<string, unknown>;
+  addDefaultOption?: boolean;
 }
 
-const Dropdown = ({ options, value, setValue, style, getMapping }: Props) => {
+const Dropdown = ({
+  options,
+  value,
+  setValue,
+  style,
+  getMapping,
+  addDefaultOption = false,
+}: Props) => {
+  const [open, setOpen] = useState(false);
   const formattedOptions = options.map((option) => ({
     label: getMapping(option.name),
     value: option.name,
   }));
-  const [open, setOpen] = useState(false);
+
+  if (addDefaultOption) {
+    formattedOptions.unshift(filterDefaultOption);
+  }
 
   return (
     <View>
       <DropDownPicker
         open={open}
-        value={value}
+        value={value ? value : formattedOptions[0].value}
         items={formattedOptions}
         setOpen={setOpen}
         setValue={setValue}

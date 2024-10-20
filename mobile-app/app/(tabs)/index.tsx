@@ -1,28 +1,16 @@
 import Button from '@/components/Button/Button';
-import Dropdown from '@/components/Dropdown/Dropdown';
+import { Filters } from '@/components/Filters/Filters';
 import PreviewQuestionList from '@/components/PreviewQuestionList/PreviewQuestionList';
-import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { themeColor } from '@/constants/Colors';
-import { endpoints, httpGet } from '@/http/http';
-import { difficultiesMappings, Filter, sourcesMappings } from '@/types/filters';
-import { useEffect, useState } from 'react';
+import { filterDefaultOption } from '@/types/filters';
+import { useState } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 
 export default function HomeScreen() {
-  const [source, setSource] = useState('');
-  const [difficulty, setDifficulty] = useState('');
-  const [sources, setSources] = useState<Filter[]>([]);
-  const [difficulties, setDifficulties] = useState<Filter[]>([]);
-
-  const setFilters = async () => {
-    setSources(await httpGet(endpoints.sources));
-    setDifficulties(await httpGet(endpoints.difficulties));
-  };
-
-  useEffect(() => {
-    setFilters();
-  }, []);
+  const [source, setSource] = useState<string>(filterDefaultOption.value);
+  const [difficulty, setDifficulty] = useState<string>(
+    filterDefaultOption.value
+  );
 
   return (
     <ScrollView>
@@ -30,29 +18,13 @@ export default function HomeScreen() {
         {/* <ThemedView style={[styles.filtersAlignment, styles.buttonsContainer]}> */}
         {/* <Button text='Caută' onPress={() => {}} style={styles.button} /> */}
         {/* </ThemedView> */}
-        <ThemedView style={styles.filtersAlignment}>
-          <ThemedView>
-            <ThemedText>Sursa</ThemedText>
-            <Dropdown
-              value={source}
-              setValue={setSource}
-              style={styles.dropdown}
-              options={sources}
-              getMapping={(optionName) => sourcesMappings[optionName]}
-            />
-          </ThemedView>
-          <ThemedView>
-            <ThemedText>Dificultate</ThemedText>
-            <Dropdown
-              value={difficulty}
-              setValue={setDifficulty}
-              style={styles.dropdown}
-              options={difficulties}
-              getMapping={(optionName) => difficultiesMappings[optionName]}
-            />
-          </ThemedView>
-        </ThemedView>
-
+        <Filters
+          source={source}
+          setSource={setSource}
+          difficulty={difficulty}
+          setDifficulty={setDifficulty}
+          addDefaultOption
+        />
         <Button text='Aleatoriu' onPress={() => {}} style={styles.button} />
 
         <PreviewQuestionList
