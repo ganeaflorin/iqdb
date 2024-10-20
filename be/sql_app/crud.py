@@ -54,6 +54,10 @@ def get_questions(db: Session, source, difficulty):
         db_questions = db_questions.filter(models.Question.difficulty == difficulty)
     return db_questions.all()
 
+def get_question(db: Session, question_id):
+    db_question = db.query(models.Question, id=question_id)
+    return db_question
+
 
 def create_question(db: Session, question: schemas.QuestionCreate):
     db_question = models.Question(source=question.source, difficulty=question.difficulty, round=question.round, text=question.text, image=question.image, answer=question.image, answerImage=question.answerImage, comment=question.comment)
