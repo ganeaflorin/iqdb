@@ -60,11 +60,15 @@ def get_question(db: Session, question_id):
 
 
 def create_question(db: Session, question: schemas.QuestionCreate):
-    db_question = models.Question(source=question.source, difficulty=question.difficulty, round=question.round, text=question.text, image=question.image, answer=question.image, answerImage=question.answerImage, comment=question.comment)
-    db.add(db_question)
-    db.commit()
-    db.refresh(db_question)
-    return db_question
+    try:
+        db_question = models.Question(source=question.source, difficulty=question.difficulty, round=question.round, text=question.text, image=question.image, answer=question.image, answerImage=question.answerImage, comment=question.comment)
+        db.add(db_question)
+        db.commit()
+        db.refresh(db_question)
+        return db_question
+    except Exception as err:
+        print(err)
+        raise HTTPException(status_code=422, detail=err)
 
 
 def delete_question(db: Session, question_id: int):
