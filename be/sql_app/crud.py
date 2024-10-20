@@ -55,7 +55,7 @@ def get_questions(db: Session, source, difficulty):
     return db_questions.all()
 
 def get_question(db: Session, question_id):
-    db_question = db.query(models.Question, id=question_id)
+    db_question = db.get(models.Question, question_id)
     return db_question
 
 
