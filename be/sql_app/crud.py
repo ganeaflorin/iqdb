@@ -61,7 +61,7 @@ def get_question(db: Session, question_id):
 
 def create_question(db: Session, question: schemas.QuestionCreate):
     try:
-        db_question = models.Question(source=question.source, difficulty=question.difficulty, round=question.round, text=question.text, image=question.image, answer=question.image, answerImage=question.answerImage, comment=question.comment)
+        db_question = models.Question(source=question.source, difficulty=question.difficulty, round=question.round, text=question.text, image=question.image, answer=question.answer, answerImage=question.answerImage, comment=question.comment)
         db.add(db_question)
         db.commit()
         db.refresh(db_question)

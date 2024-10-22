@@ -13,6 +13,7 @@ import {
 import { Question } from '@/types/question';
 import { endpoints, httpGet } from '@/http/http';
 import { Colors } from '@/constants/Colors';
+import { difficultiesMappings, sourcesMappings } from '@/types/filters';
 
 const QuestionDetails = () => {
   const { id } = useLocalSearchParams();
@@ -55,10 +56,14 @@ const QuestionDetails = () => {
             )}
           </ThemedView>
           <ThemedView style={styles.metaInfo}>
-            <ThemedText>Dificultate {question?.difficulty}</ThemedText>
+            {question?.difficulty && (
+              <ThemedText>
+                Dificultate {difficultiesMappings[question.difficulty]}
+              </ThemedText>
+            )}
             {question?.source && (
               <ThemedText>
-                , sursa {capitalizeFirstLetter(question.source)}
+                , sursa {sourcesMappings[question.source]}
               </ThemedText>
             )}
           </ThemedView>

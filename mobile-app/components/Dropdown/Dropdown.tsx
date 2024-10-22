@@ -1,9 +1,8 @@
+import { Filter, filterDefaultOption } from '@/types/filters';
 import React, { useState } from 'react';
+import { View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { styles } from './Dropdown.styles';
-import { Filter, filterDefaultOption } from '@/types/filters';
-import { ThemedView } from '../ThemedView';
-import { View } from 'react-native';
 
 interface Props {
   options: Filter[];
@@ -31,6 +30,7 @@ const Dropdown = ({
   if (addDefaultOption) {
     formattedOptions.unshift(filterDefaultOption);
   }
+  console.log('🚀  formattedOptions:', formattedOptions);
 
   return (
     <View>
