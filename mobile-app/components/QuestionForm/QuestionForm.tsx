@@ -7,6 +7,7 @@ import { ThemedText } from '../ThemedText';
 import { ThemedView } from '../ThemedView';
 import { styles } from './QuestionForm.styles';
 import { endpoints, httpPost } from '@/http/http';
+import { filterDefaultOption } from '@/types/filters';
 
 interface Props {
   propSource?: string;
@@ -25,8 +26,10 @@ const QuestionForm = ({
   propComment,
   propDifficulty,
 }: Props) => {
-  const [source, setSource] = useState(propSource ?? '');
-  const [difficulty, setDifficulty] = useState(propDifficulty ?? '');
+  const [source, setSource] = useState(propSource ?? filterDefaultOption.value);
+  const [difficulty, setDifficulty] = useState(
+    propDifficulty ?? filterDefaultOption.value
+  );
   const [round, setRound] = useState(propRound);
   const [question, setQuestion] = useState(propQuestion);
   const [answer, setAnswer] = useState(propAnswer);
@@ -79,7 +82,7 @@ const QuestionForm = ({
             source,
             difficulty,
             round,
-            question,
+            text: question,
             answer,
             comment,
             image,

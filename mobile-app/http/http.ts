@@ -18,6 +18,7 @@ export const httpGet = async (endpoint: string, query?: string) => {
 
 export const httpPost = async (endpoint: string, payload?: unknown) => {
   try {
+    console.log('payload: ', payload);
     const resp = await fetch(endpoint, {
       method: 'POST',
       headers: {
@@ -26,7 +27,9 @@ export const httpPost = async (endpoint: string, payload?: unknown) => {
       },
       body: JSON.stringify(payload),
     });
+    console.log('🚀  resp:', resp);
   } catch (error) {
     console.error(error);
+    console.log('err: ', error);
   }
 };

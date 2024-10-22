@@ -30,7 +30,6 @@ const Dropdown = ({
   if (addDefaultOption) {
     formattedOptions.unshift(filterDefaultOption);
   }
-  console.log('🚀  formattedOptions:', formattedOptions);
 
   return (
     <View>
