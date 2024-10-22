@@ -2,6 +2,7 @@ import Button from '@/components/Button/Button';
 import { Filters } from '@/components/Filters/Filters';
 import PreviewQuestionList from '@/components/PreviewQuestionList/PreviewQuestionList';
 import { ThemedView } from '@/components/ThemedView';
+import { themeColor } from '@/constants/Colors';
 import { filterDefaultOption } from '@/types/filters';
 import { useState } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
@@ -13,7 +14,7 @@ export default function HomeScreen() {
   );
 
   return (
-    <ScrollView>
+    <ScrollView style={{ backgroundColor: themeColor }}>
       <ThemedView style={styles.container}>
         {/* <ThemedView style={[styles.filtersAlignment, styles.buttonsContainer]}> */}
         {/* <Button text='Caută' onPress={() => {}} style={styles.button} /> */}

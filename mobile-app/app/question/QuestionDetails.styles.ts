@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     marginBottom: 5,
   },
   text: {
-    marginTop: 50,
+    marginTop: 30,
   },
   buttonsContainer: {
     flexDirection: 'row',
