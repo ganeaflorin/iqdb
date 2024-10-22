@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    paddingTop: 50,
+    paddingTop: 80,
     paddingLeft: 25,
     paddingRight: 25,
     paddingBottom: 50,
@@ -29,7 +29,6 @@ export const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
   },
-  answerSection: {},
   alignRow: {
     flexDirection: 'row',
   },

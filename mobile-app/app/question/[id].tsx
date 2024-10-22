@@ -20,6 +20,7 @@ const QuestionDetails = () => {
   const [answerIsShown, setAnswerIsShown] = useState<boolean>(false);
   const [question, setQuestion] = useState<Question>();
   const [loading, setLoading] = useState<boolean>(false);
+  const [hintIsShown, setHintIsShown] = useState<boolean>(false);
 
   const getQuestion = async () => {
     setQuestion(await httpGet(`${endpoints.questions}/${id}`));
@@ -35,7 +36,9 @@ const QuestionDetails = () => {
     setAnswerIsShown((prev) => !prev);
   };
 
-  const showNumberOfLetters = () => {};
+  const changeNumberOfLetters = () => {
+    setHintIsShown((prev) => !prev);
+  };
 
   if (loading) {
     return <ActivityIndicator color={Colors.light.secondaryColor} />;
@@ -78,13 +81,18 @@ const QuestionDetails = () => {
               style={styles.button}
             />
             <Button
-              onPress={showNumberOfLetters}
-              text='Numărul de litere'
+              onPress={changeNumberOfLetters}
+              text={hintIsShown ? 'Ascunde indiciul' : 'Numărul de litere'}
               style={styles.button}
             />
           </ThemedView>
+          {hintIsShown && (
+            <ThemedText>
+              Numărul de litere al răspunsului: {question?.answer.length}
+            </ThemedText>
+          )}
           {answerIsShown && (
-            <ThemedView style={styles.answerSection}>
+            <ThemedView>
               <ThemedView style={styles.alignRow}>
                 <ThemedText type='defaultSemiBold'>Răspuns: </ThemedText>
                 <ThemedText>{question?.answer}</ThemedText>
