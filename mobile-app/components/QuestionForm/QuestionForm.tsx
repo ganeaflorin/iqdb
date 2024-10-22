@@ -6,6 +6,7 @@ import ImagePicker from '../ImagePicker/ImagePicker';
 import { ThemedText } from '../ThemedText';
 import { ThemedView } from '../ThemedView';
 import { styles } from './QuestionForm.styles';
+import { endpoints, httpPost } from '@/http/http';
 
 interface Props {
   propSource?: string;
@@ -71,7 +72,22 @@ const QuestionForm = ({
         value={comment}
         onChangeText={setComment}
       />
-      <Button text='Trimite' onPress={() => {}} style={styles.button} />
+      <Button
+        text='Trimite'
+        onPress={() => {
+          httpPost(endpoints.questions, {
+            source,
+            difficulty,
+            round,
+            question,
+            answer,
+            comment,
+            image,
+            answerImage,
+          });
+        }}
+        style={styles.button}
+      />
     </ThemedView>
   );
 };

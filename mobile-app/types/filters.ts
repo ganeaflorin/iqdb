@@ -15,6 +15,7 @@ export const sourcesMappings: Record<string, string> = {
   CMJI: 'CMJI',
   PLANET_QUIZ: 'Planet Quiz Iași',
   PUB_QUIZ_IASI: 'Pub Quiz Iași',
+  PUB_QUIZ_BY_IDIOT: 'Pub Quiz by IDIOT',
 };
 
 export const filterDefaultOption = { label: 'Toate', value: 'ALL' };

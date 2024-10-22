@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react';
 import Dropdown from '../Dropdown/Dropdown';
 import { ThemedText } from '../ThemedText';
 import { ThemedView } from '../ThemedView';
-import { StyleSheet } from 'react-native';
+import { ActivityIndicator, StyleSheet } from 'react-native';
 import { httpGet, endpoints } from '@/http/http';
+import { Colors } from '@/constants/Colors';
 
 interface Props {
   source: string;
@@ -23,14 +24,23 @@ export const Filters = ({
 }: Props) => {
   const [sources, setSources] = useState<Filter[]>([]);
   const [difficulties, setDifficulties] = useState<Filter[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const setFilters = async () => {
     setSources(await httpGet(endpoints.sources));
     setDifficulties(await httpGet(endpoints.difficulties));
+    setLoading(false);
   };
 
   useEffect(() => {
+    setLoading(true);
     setFilters();
   }, []);
+
+  if (loading) {
+    return (
+      <ActivityIndicator size='small' color={Colors.light.secondaryColor} />
+    );
+  }
 
   return (
     <ThemedView style={styles.filtersAlignment}>

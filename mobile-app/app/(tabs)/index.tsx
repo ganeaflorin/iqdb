@@ -42,16 +42,6 @@ const styles = StyleSheet.create({
     padding: 25,
     paddingTop: 50,
   },
-  filtersAlignment: {
-    justifyContent: 'center',
-    flexDirection: 'row',
-    gap: 20,
-    zIndex: 1,
-    elevation: 1,
-  },
-  dropdown: {
-    width: 140,
-  },
   button: {
     width: 120,
     marginTop: 30,

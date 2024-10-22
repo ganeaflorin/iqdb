@@ -14,7 +14,7 @@ class Difficulty(Base):
     __tablename__ = "difficulties"
 
     id = Column(Integer, primary_key=True)
-    name = Column(String)
+    name = Column(String, unique=True)
 
 class Question(Base):
     __tablename__ = "questions"

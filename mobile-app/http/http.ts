@@ -15,3 +15,18 @@ export const httpGet = async (endpoint: string, query?: string) => {
     console.error(error);
   }
 };
+
+export const httpPost = async (endpoint: string, payload?: unknown) => {
+  try {
+    const resp = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};

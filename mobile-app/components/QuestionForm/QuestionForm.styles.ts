@@ -36,5 +36,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     gap: 10,
+    elevation: 1,
+    zIndex: 1,
   },
 });
