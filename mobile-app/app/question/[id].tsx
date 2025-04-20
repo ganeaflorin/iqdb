@@ -41,84 +41,80 @@ const QuestionDetails = () => {
   };
 
   if (loading) {
-    return <ActivityIndicator color={Colors.light.secondaryColor} />;
+    return <ActivityIndicator size={36} color={Colors.light.secondaryColor} />;
   }
 
   return (
-    <GestureHandlerRootView>
-      <ScrollView>
-        <ThemedView style={styles.container}>
-          <ThemedView style={styles.metaInfo}>
-            {question?.id && (
-              <ThemedText>Întrebarea {question.id + 1}</ThemedText>
-            )}
-            {question?.round && (
-              <ThemedText>
-                , runda {capitalizeFirstLetter(question.round)}
-              </ThemedText>
-            )}
-          </ThemedView>
-          <ThemedView style={styles.metaInfo}>
-            {question?.difficulty && (
-              <ThemedText>
-                Dificultate {difficultiesMappings[question.difficulty]}
-              </ThemedText>
-            )}
-            {question?.source && (
-              <ThemedText>
-                , sursa {sourcesMappings[question.source]}
-              </ThemedText>
-            )}
-          </ThemedView>
-          <ThemedText style={styles.text}>{question?.text}</ThemedText>
-          {question?.image && (
-            <Image style={styles.image} source={{ uri: question.image }} />
+    <ScrollView>
+      <ThemedView style={styles.container}>
+        <ThemedView style={styles.metaInfo}>
+          {question?.id && (
+            <ThemedText>Întrebarea {question.id + 1}</ThemedText>
           )}
-          <ThemedView style={styles.buttonsContainer}>
-            <Button
-              onPress={changeAnswerIsShown}
-              text={answerIsShown ? 'Ascunde răspunsul' : 'Arată răspunsul'}
-              style={styles.button}
-            />
-            <Button
-              onPress={changeNumberOfLetters}
-              text={hintIsShown ? 'Ascunde indiciul' : 'Numărul de litere'}
-              style={styles.button}
-            />
-          </ThemedView>
-          {hintIsShown && (
+          {question?.round && (
             <ThemedText>
-              Numărul de litere al răspunsului: {question?.answer.length}
+              , runda {capitalizeFirstLetter(question.round)}
             </ThemedText>
           )}
-          {answerIsShown && (
-            <ThemedView>
-              <ThemedView style={styles.alignRow}>
-                <ThemedText type='defaultSemiBold'>Răspuns: </ThemedText>
-                <ThemedText>{question?.answer}</ThemedText>
-              </ThemedView>
-              {question?.answerImage && (
-                <ThemedView>
-                  <ThemedText type='defaultSemiBold'>
-                    Imaginea originală:
-                  </ThemedText>
-                  <Image
-                    style={styles.image}
-                    source={{ uri: question.answerImage }}
-                  />
-                </ThemedView>
-              )}
-              {question?.comment && (
-                <ThemedView style={styles.alignRow}>
-                  <ThemedText type='defaultSemiBold'>Comentariu: </ThemedText>
-                  <ThemedText>{question.comment}</ThemedText>
-                </ThemedView>
-              )}
-            </ThemedView>
+        </ThemedView>
+        <ThemedView style={styles.metaInfo}>
+          {question?.difficulty && (
+            <ThemedText>
+              Dificultate {difficultiesMappings[question.difficulty]}
+            </ThemedText>
+          )}
+          {question?.source && (
+            <ThemedText>, sursa {sourcesMappings[question.source]}</ThemedText>
           )}
         </ThemedView>
-      </ScrollView>
-    </GestureHandlerRootView>
+        <ThemedText style={styles.text}>{question?.text}</ThemedText>
+        {question?.image && (
+          <Image style={styles.image} source={{ uri: question.image }} />
+        )}
+        <ThemedView style={styles.buttonsContainer}>
+          <Button
+            onPress={changeAnswerIsShown}
+            text={answerIsShown ? 'Ascunde răspunsul' : 'Arată răspunsul'}
+            style={styles.button}
+          />
+          <Button
+            onPress={changeNumberOfLetters}
+            text={hintIsShown ? 'Ascunde indiciul' : 'Numărul de litere'}
+            style={styles.button}
+          />
+        </ThemedView>
+        {hintIsShown && (
+          <ThemedText>
+            Numărul de litere al răspunsului: {question?.answer.length}
+          </ThemedText>
+        )}
+        {answerIsShown && (
+          <ThemedView>
+            <ThemedView style={styles.alignRow}>
+              <ThemedText type='defaultSemiBold'>Răspuns: </ThemedText>
+              <ThemedText>{question?.answer}</ThemedText>
+            </ThemedView>
+            {question?.answerImage && (
+              <ThemedView>
+                <ThemedText type='defaultSemiBold'>
+                  Imaginea originală:
+                </ThemedText>
+                <Image
+                  style={styles.image}
+                  source={{ uri: question.answerImage }}
+                />
+              </ThemedView>
+            )}
+            {question?.comment && (
+              <ThemedView style={styles.alignRow}>
+                <ThemedText type='defaultSemiBold'>Comentariu: </ThemedText>
+                <ThemedText>{question.comment}</ThemedText>
+              </ThemedView>
+            )}
+          </ThemedView>
+        )}
+      </ThemedView>
+    </ScrollView>
   );
 };
 

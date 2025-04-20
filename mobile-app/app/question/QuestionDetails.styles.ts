@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     paddingBottom: 50,
     alignItems: 'center',
     alignContent: 'center',
-    minHeight: 750,
+    minHeight: 1000,
   },
   metaInfo: {
     flexDirection: 'row',

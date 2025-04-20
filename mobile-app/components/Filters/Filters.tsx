@@ -37,9 +37,7 @@ export const Filters = ({
   }, []);
 
   if (loading) {
-    return (
-      <ActivityIndicator size='small' color={Colors.light.secondaryColor} />
-    );
+    return <ActivityIndicator size={18} color={Colors.light.secondaryColor} />;
   }
 
   return (

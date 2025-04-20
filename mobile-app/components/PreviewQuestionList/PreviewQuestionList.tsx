@@ -4,11 +4,10 @@ import PreviewQuestion from '../PreviewQuestion/PreviewQuestion';
 import { styles } from './PreviewQuestionList.styles';
 import { Question } from '@/types/question';
 import { endpoints, httpGet } from '@/http/http';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, Platform } from 'react-native';
 import { Colors } from '@/constants/Colors';
 import { ThemedText } from '../ThemedText';
 import { filterDefaultOption } from '@/types/filters';
-
 interface Props {
   source: string;
   difficulty: string;
@@ -47,21 +46,22 @@ const PreviewQuestionList = ({ source, difficulty, isRandom }: Props) => {
   if (loading) {
     return (
       <ThemedView style={styles.container}>
-        <ActivityIndicator size='large' color={Colors.light.secondaryColor} />
+        <ActivityIndicator size={36} color={Colors.light.secondaryColor} />
       </ThemedView>
     );
   }
 
   return (
     <ThemedView style={styles.container}>
-      {questions.length === 0 && (
+      {!questions || questions.length === 0 ? (
         <ThemedText style={styles.noQuestionsText}>
           Nu există întrebări care să îndeplinească condițiile selectate.
         </ThemedText>
+      ) : (
+        questions.map((question) => (
+          <PreviewQuestion key={question.id} {...question} />
+        ))
       )}
-      {questions.map((question) => (
-        <PreviewQuestion key={question.id} {...question} />
-      ))}
     </ThemedView>
   );
 };

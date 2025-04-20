@@ -22,13 +22,13 @@ const Dropdown = ({
   addDefaultOption = false,
 }: Props) => {
   const [open, setOpen] = useState(false);
-  const formattedOptions = options.map((option) => ({
+  const formattedOptions = options?.map((option) => ({
     label: getMapping(option.name),
     value: option.name,
   }));
 
   if (addDefaultOption) {
-    formattedOptions.unshift(filterDefaultOption);
+    formattedOptions?.unshift(filterDefaultOption);
   }
 
   return (

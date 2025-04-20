@@ -8,8 +8,8 @@ export const styles = StyleSheet.create({
     padding: 20,
     shadowColor: '#000000',
     shadowOffset: {
-      width: 10000,
-      height: 20,
+      width: 0,
+      height: 5,
     },
     shadowOpacity: 0.5,
     shadowRadius: 7.62,
